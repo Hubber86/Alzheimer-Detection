@@ -1,0 +1,47 @@
+<!-- navbar.html -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container mt-4">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Alzheimer's Early Detection</a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item {{ 'active' if request.endpoint == 'index' else '' }}">
+                <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+            </li>
+            {% if current_user.is_authenticated %}
+                <!-- Display "Logout" when the user is authenticated -->
+                <li class="nav-item {{ 'active' if request.endpoint == 'logout' else '' }}">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                </li>
+                <li class="nav-item {{ 'active' if request.endpoint == 'performance' else '' }}">
+                    <a class="nav-link" href="{{ url_for('performance', filename='default_filename') }}">Performance Analysis</a>
+                </li>
+            {% else %}
+                <!-- Display "Login" and "Register" when the user is not authenticated -->
+                <li class="nav-item {{ 'active' if request.endpoint == 'login' else '' }}">
+                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                </li>
+                <li class="nav-item {{ 'active' if request.endpoint == 'register' else '' }}">
+                    <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                </li>
+            {% endif %}
+            
+            <li class="nav-item {{ 'active' if request.endpoint == 'model' else '' }}">
+                <a class="nav-link" href="{{ url_for('model') }}">Preview</a>
+            </li> 
+            <li class="nav-item {{ 'active' if request.endpoint == 'about' else '' }}">
+                <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
+            </li>
+        </ul>
+    </div>
+</nav>

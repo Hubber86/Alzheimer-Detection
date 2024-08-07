@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Data Visualization - Alzheimer's Detection</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Your custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    {% include 'layout/navbar.html' %}
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center mb-4">Data Visualization</h2>
+
+                <!-- Bar Chart -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Records Counts of Classes</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Include your bar chart visualization here -->
+                        <img src="{{ url_for('static', filename='images/Records counts of classes using bar-chart 1.2.1.1.png') }}" class="img-fluid" alt="Bar Chart">
+                    </div>
+                </div>
+
+                <!-- Pie Chart -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="card-title">Records Counts of Classes (Pie Chart)</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Include your pie chart visualization here -->
+                        <img src="{{ url_for('static', filename='images/Records counts of classes using pie-chart.png') }}" class="img-fluid" alt="Pie Chart">
+                    </div>
+                </div>
+
+                <!-- Accuracy Comparison Chart -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="card-title">Models Accuracy Comparison</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Include your pie chart visualization here -->
+                        <img src="{{ url_for('static', filename='images/accuracy_comparison.png') }}" class="img-fluid" alt="Pie Chart">
+                    </div>
+                </div>
+
+                <!-- Image Processing Example -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="card-title">Image Processing Example</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Include your image processing example here -->
+                        <img src="{{ url_for('static', filename='images/image processing.png') }}" class="img-fluid" alt="Image Processing Example">
+                    </div>
+                </div>
+
+                <!-- Not a member? Register here link -->
+                <p class="mt-4">Not a member? <a href="{{ url_for('register') }}">Register here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    {% include 'layout/footer.html' %}
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

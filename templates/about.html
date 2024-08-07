@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>About Us - Alzheimer's Detection</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Your custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+</head>
+
+<body>
+    {% include 'layout/navbar.html' %}
+    {% include 'layout/header.html' %}
+
+    <!-- About Us Section -->
+    <section id="aboutSection" class="bg-light">
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">About Us</h2>
+
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <p class="lead">
+                        Welcome to Alzheimer's Detection, where we are dedicated to advancing the early detection of Alzheimer's disease using cutting-edge technology.
+                    </p>
+                    <p class="lead">
+                        Our team of experts is committed to leveraging the power of artificial intelligence and machine learning to provide accurate and efficient diagnosis assistance.
+                    </p>
+                    <!-- Add more information about your team, mission, and goals here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'layout/footer.html' %}
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+</head>
+
+<body>
+    {% include 'layout/navbar.html' %}
+    {% include 'layout/header.html' %}
+
+    <div class="container mt-4">
+        <h1>User Registration <i class="fas fa-user-plus"></i></h1>
+        <form action="{{ url_for('register') }}" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="fullname">Full Name <i class="fas fa-user"></i>:</label>
+                <input type="text" class="form-control" id="fullname" name="fullname" required>
+            </div>
+
+            <!-- Add other registration fields with appropriate icons -->
+            <!-- Date of Birth Field -->
+            <div class="form-group">
+                <label for="dob">Date of Birth <i class="fas fa-calendar-alt"></i>:</label>
+                <input type="date" class="form-control" id="dob" name="dob" required>
+            </div>
+
+            <!-- Contact Field -->
+            <div class="form-group">
+                <label for="contact">Contact <i class="fas fa-phone"></i>:</label>
+                <input type="tel" class="form-control" id="contact" name="contact" required>
+            </div>
+
+            <!-- Gender Field -->
+            <div class="form-group">
+                <label for="gender">Gender <i class="fas fa-venus-mars"></i>:</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="" disabled selected>Select your gender</option>
+                    <option value="male">Male <i class="fas fa-male"></i></option>
+                    <option value="female">Female <i class="fas fa-female"></i></option>
+                    <option value="other">Other <i class="fas fa-genderless"></i></option>
+                </select>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email <i class="fas fa-envelope"></i>:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>            
+
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password">Password <i class="fas fa-lock"></i>:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password <i class="fas fa-lock"></i>:</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirm_password" required>
+            </div>
+
+            <!-- Hidden input field to store hashed password -->
+            <input type="hidden" id="hashedPassword" name="hashedPassword">
+
+            <button type="submit" class="btn btn-primary">Register <i class="fas fa-user-plus"></i></button>
+        </form>
+
+        <p class="mt-3">Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+    </div>
+
+    {% include 'layout/footer.html' %}
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <!-- Your custom JavaScript code here -->
+    <script>
+        function validateForm() {
+            // Get form input values
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Simple example: Check if passwords match
+            if (password !== confirmPassword) {
+                alert("Passwords do not match. Please check and try again.");
+                return false;
+            }
+
+            // Hash the password before submitting the form
+            var hashedPassword = sha256(password); // Replace sha256 with your preferred hashing algorithm
+
+            // Attach the hashed password to the hidden input field
+            document.getElementById('hashedPassword').value = hashedPassword;
+
+            return true; // If all validation checks pass, allow form submission
+        }
+    </script>
+
+</body>
+
+</html>
