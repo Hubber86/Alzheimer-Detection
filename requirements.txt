@@ -3,9 +3,11 @@ Flask-Login==0.6.2
 Flask-SQLAlchemy==2.5.1            
 Werkzeug==2.1.1                    
 tensorflow==2.16.1                 # Updated TensorFlow version
-numpy==1.26.4                      # Updated NumPy version (compatible with Python 3.11+)
+numpy==1.26.4                      # Updated NumPy version
 Pillow==8.3.2                      
 scikit-learn==0.24.2               
 joblib==1.0.1                      
 Jinja2==3.1.2                      
 matplotlib==3.4.3                  
+setuptools==65.5.0                 # Ensure setuptools is installed
+wheel==0.41.2                      # Ensure wheel is installed
