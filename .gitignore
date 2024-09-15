@@ -1,0 +1,42 @@
+# Ignore modifications.txt
+modifications.txt
+
+# Ignore README and .gitattributes if desired
+#README.md
+#.gitattributes
+
+# Python-related ignores
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environment files
+.env
+venv/
+.venv/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Model and data files (optional if not needed in the repository)
+#*.h5
+#*.joblib
+
+# Logs and temporary files
+*.log
+*.bak
+*.tmp
+*.swp
+
+# OS-specific ignores
+.DS_Store
+Thumbs.db
+
+# Ignore deployment files (optional, like Vercel/Heroku settings)
+.vscode/
+#.vercel/
+#.heroku/
+
+# Ignore compiled bytecode
+*.pyc
