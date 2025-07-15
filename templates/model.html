@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Model Details</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+    <!-- Your custom CSS -->
+    <!-- Add the link to your custom CSS file if needed -->
+    <style>
+        body {
+            padding-top: 56px; /* Adjust based on the height of your navbar */
+        }
+        /* Add any additional custom styles here */
+    </style>
+</head>
+
+<body>
+    <!-- Include Navbar -->
+    {% include 'layout/navbar.html' %}
+
+    <!-- Header -->
+    {% include 'layout/header.html' %}
+
+    <!-- Main Content -->
+    <div class="container mt-3">
+        {% if current_user.is_authenticated %}
+            <div class="container">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="trained_model_graphs_tab" data-toggle="tab" href="#trained_model_graphs">Trained Model Graphs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="model_performance_tab" data-toggle="tab" href="#model_performance">Trained Model Performance</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="trained_model_graphs" class="tab-pane fade show active">
+                        <!-- Content for Trained Model Graphs tab -->
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Accuracy Plot</h5>
+                            </div>
+                            <div class="card-body">
+                                <img src="{{ url_for('static', filename='images/accuracy plot.png') }}" class="img-fluid"
+                                    alt="Accuracy Plot">
+                            </div>
+                        </div>
+
+                        <!-- Display Loss Plot -->
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Loss Plot</h5>
+                            </div>
+                            <div class="card-body">
+                                <img src="{{ url_for('static', filename='images/loss_plot.png') }}" class="img-fluid"
+                                    alt="Loss Plot">
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Accuracy Comparison Chart -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="card-title">Models Accuracy Comparison</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Include your pie chart visualization here -->
+                        <img src="{{ url_for('static', filename='images/accuracy_comparison.png') }}" class="img-fluid" alt="Pie Chart">
+                    </div>
+                </div>
+
+                    <div id="model_performance" class="tab-pane fade">
+                        <!-- Content for Trained Model Performance tab -->
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Trained Model Details</h5>
+                                <pre>{{ model_summary|safe }}</pre>
+                            </div>
+                        </div>
+
+                        <!-- Bar Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Records Counts of Classes</h5>
+                            </div>
+                            <div class="card-body">
+                                <!-- Include your bar chart visualization here -->
+                                <img src="{{ url_for('static', filename='images/Records counts of classes using bar-chart 1.2.1.1.png') }}"
+                                    class="img-fluid" alt="Bar Chart">
+                            </div>
+                        </div>
+
+                        <!-- Pie Chart -->
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Records Counts of Classes (Pie Chart)</h5>
+                            </div>
+                            <div class="card-body">
+                                <!-- Include your pie chart visualization here -->
+                                <img src="{{ url_for('static', filename='images/Records counts of classes using pie-chart.png') }}"
+                                    class="img-fluid" alt="Pie Chart">
+                            </div>
+                        </div>
+
+                        <!-- Image Processing Example -->
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Image Processing Example</h5>
+                            </div>
+                            <div class="card-body">
+                                <!-- Include your image processing example here -->
+                                <img src="{{ url_for('static', filename='images/image processing.png') }}"
+                                    class="img-fluid" alt="Image Processing Example">
+                            </div>
+                        </div>
+
+                        <!-- Display Additional Confusion Matrix -->
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Additional Confusion Matrix</h5>
+                            </div>
+                            <div class="card-body">
+                                <img src="{{ url_for('static', filename='images/confusion_matrix 1.2.1.png') }}"
+                                    class="img-fluid" alt="Confusion Matrix">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">Welcome!</h4>
+                <p>Here you can access Trained Model graphs and Trained model performance.</p>
+                <hr>
+                <p>To access these tabs, please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register</a>.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Include Footer -->
+    {% include 'layout/footer.html' %}
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <!-- Your custom script (if any) -->
+    <!-- Add the link to your custom JS file if needed -->
+</body>
+
+</html>

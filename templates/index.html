@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alzheimer Detection</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+</head>
+<body>
+    {% include 'layout/navbar.html' %}
+    {% include 'layout/header.html' %}
+
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.startswith('Success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% elif message.startswith('Error') or message.startswith('Failure') %}
+                        <div class="alert alert-danger">
+                            {{ message }}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    
+    <div class="container">
+        <h1 class="mt-5 mb-4">Alzheimer Detection</h1>
+        
+        {% if current_user.is_authenticated %}
+            <form action="/predict" method="post" enctype="multipart/form-data" class="mb-4">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" name="file" accept=".jpg, .jpeg, .png" required>
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Predict</button>
+            </form>
+
+            <div id="result" class="mb-4"></div>
+            
+            <img id="uploadedImage" class="img-fluid rounded" style="display:none; max-width: 500px; margin-top: 20px;">
+        {% else %}
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">Welcome!</h4>
+                <p>Please <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a> or <a href="{{ url_for('register') }}" class="btn btn-success">Register</a> to upload an image and access the features.</p>
+            </div>        
+        {% endif %}
+    </div>
+
+    {% include 'layout/footer.html' %}
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    
+    <script>
+        // Get the file input and its label
+        var fileInput = document.getElementById('customFile');
+        var fileLabel = document.querySelector('.custom-file-label');
+        var resultDiv = document.getElementById('result');
+    
+        // Add an event listener to the file input to update the label when a file is selected
+        fileInput.addEventListener('change', function () {
+            // Display the selected file name in the label
+            fileLabel.innerHTML = this.files[0].name;
+        });
+    
+        // Add an event listener to the form submission to handle the prediction result
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Create a FormData object to send the form data
+            var formData = new FormData(this);
+    
+            // Send a POST request to the /predict route
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    // Display the error message on the index page
+                    resultDiv.innerHTML = '<div class="alert alert-danger">' + data.error + '</div>';
+                } else {
+                    // If there is no error, submit the form
+                    this.submit();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>    
+
+    <!-- Your custom JavaScript code here -->
+
+</body>
+</html>

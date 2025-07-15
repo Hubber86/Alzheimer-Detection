@@ -1,0 +1,76 @@
+/* Reset some default styles */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* Navigation Bar styling */
+.navbar {
+    background-color: #343a40; /* Navbar background color */
+    color: #ffffff; /* Text color */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    color: #ffffff;
+}
+
+/* Header styling */
+.header {
+    background-color: #007bff; /* Header background color */
+    color: #ffffff; /* Text color */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Container styling */
+.container {
+    margin-top: 20px;
+}
+
+/* Form styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Button styling */
+.btn {
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+/* Card styling */
+.card {
+    margin-top: 20px;
+}
+
+/* Footer styling */
+.footer {
+    background-color: #343a40; /* Footer background color */
+    color: #ffffff; /* Text color */
+    padding: 20px 0;
+}
+
+/* General spacing and margins */
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
